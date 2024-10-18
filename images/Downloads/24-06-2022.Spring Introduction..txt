@@ -1,0 +1,126 @@
+Todays Session: Spring Introduction:
+---------------------------------------------------
+
+Spring : It is called as framework of framework, because of it provides support to various
+framework such as struts, Hibernate, EJB, JSf.
+
+Advantages of Spring :
+-----------------------------
+1) Spring is used to develop web application.
+2) Spring is developed in modular fashion.
+3) Spring is loosely coupled.
+4) Spring is lightweight,
+5) Spring is versatile in nature.
+6) By using spring we can develop several types of application.
+      - Standalone app
+      - Web based application
+      - Distributed application 
+                          -SOAP webservices
+                          -Restful Services
+
+---------------------------------------------------------------
+IOC : (Inversion Of Control)
+-------------
+IOC is a principle which is used to manage and colaborate dependencies among the object 
+in our application. 
+
+DI (Dependency Injection):
+-----------
+The process of injecting dependent bean object into target bean objectis called DI.
+
+-------------------------------------------------------------------------------
+
+Spring IOC container :
+
+-> It is predefined program, it is also called as component of spring framework.
+
+-> It is used to create the object also hold object into memory and if it require
+  it can inject object into another object.
+
+-> It is also maintain life cycle of object (creation-destruction)
+----------------------------------------------------------------------
+
+
+There are 2 types of IOC container :
+
+1) BeanFactory (Core container)
+2) ApplicationContext(Advance container)
+
+1) Bean Factory(i)
+
+-> Bean factory is an old nature.
+-> Bean factory is a lazy loading (whenever require the object it can create the object)
+-> by using bean factory we can develop desktop based application only.
+-> Bean factory can not load .xml file we require  resource to load .xml file.
+
+Resource (i)---> ClassPathResource(Same folder ---> xml location)
+
+FileSystemResource(Desktop/Memory location)
+
+2) ApplicationContext(i)
+-----------------------------------
+
+-> ApplicationContext is also called as IOC container.
+-> It adds extra some functionality - Simple integration.
+-> ApplicationContext is an advance in nature
+-> It is a eagrly loading.(create the object at time of server start)
+
+ApplicationContext(i)-----> ClassPathXmlApplicationContext(c)
+                                            ------> FileSystemApplication (c)
+                                            -------> AnnotationConfiguration (c)
+
+--------------------------------------------------------------------------------------
+
+public class Mobile {
+
+	public static void main(String[] args) {
+		
+		/* Airtel a =new Airtel();
+		a.call();
+		a.data(); */
+		
+	/*	Jio jio= new Jio();
+		jio.call();
+		jio.data(); 
+		
+		Sim sim = new Jio();
+		sim.call();
+		sim.data(); */
+		
+       ApplicationContext context= new ClassPathXmlApplicationContext("spring.xml");
+       System.out.println("Config filel load");
+       Sim a= context.getBean("sim", Sim.class);
+       a.call();
+       a.data();  		
+	}
+	
+}
+-------------------------------------------------------------
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+        
+      <bean id="sim" class="com.jdc03.Jio"></bean>
+        <!-- Airtel airtel = new Airtel(); -->
+        
+        </beans>
+-----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
